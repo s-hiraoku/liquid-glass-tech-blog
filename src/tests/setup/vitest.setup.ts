@@ -22,14 +22,14 @@ global.IntersectionObserver = vi.fn(() => ({
   observe: vi.fn(),
   disconnect: vi.fn(),
   unobserve: vi.fn(),
-})) as any;
+})) as unknown as typeof IntersectionObserver;
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
   disconnect: vi.fn(),
   unobserve: vi.fn(),
-})) as any;
+})) as unknown as typeof ResizeObserver;
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -88,7 +88,7 @@ Object.defineProperty(window, 'performance', {
 
 // Mock requestAnimationFrame
 global.requestAnimationFrame = vi.fn((cb) => {
-  return setTimeout(cb, 16);
+  return setTimeout(cb, 16) as unknown as number;
 });
 
 global.cancelAnimationFrame = vi.fn((id) => {

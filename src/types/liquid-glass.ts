@@ -83,12 +83,19 @@ export interface EffectData {
   previewImage: string;
   category: EffectCategory;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
-  performance: PerformanceMetrics;
+  performance: EffectPerformanceMetrics;
   compatibility: BrowserCompatibility;
   createdBy: string;
   createdAt: Date;
   downloads: number;
   likes: number;
+}
+
+export interface EffectPerformanceMetrics {
+  renderTime: number;
+  gpuUsage: number;
+  memoryUsage: number;
+  fpsAverage: number;
 }
 
 export type EffectCategory = 'button' | 'card' | 'navigation' | 'overlay' | 'background' | 'text';

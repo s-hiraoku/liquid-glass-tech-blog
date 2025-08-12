@@ -35,7 +35,7 @@ export interface AnalyticsData {
   effectInteraction: {
     effectId: string;
     action: 'view' | 'customize' | 'download' | 'share';
-    parameters?: Record<string, any>;
+    parameters?: Record<string, unknown>;
     timestamp: Date;
   };
 

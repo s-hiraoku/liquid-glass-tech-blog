@@ -1,40 +1,74 @@
 import '@testing-library/jest-dom';
-import { beforeAll, afterEach, afterAll, vi } from 'vitest';
+import { vi } from 'vitest';
+import React from 'react';
+import { setupLiquidGlassMocks } from './mocks';
 
-// Mock CSS.supports for backdrop-filter testing
-Object.defineProperty(global, 'CSS', {
-  value: {
-    supports: vi.fn((property: string, value?: string) => {
-      if (property === 'backdrop-filter' || property === '(backdrop-filter: blur(1px))') {
-        return true;
-      }
-      if (property === 'display' && value === 'grid') {
-        return true;
-      }
-      return false;
-    }),
-  },
-  writable: true,
-});
+// Setup liquid glass and component mocks
+setupLiquidGlassMocks();
 
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn(() => ({
-  observe: vi.fn(),
-  disconnect: vi.fn(),
-  unobserve: vi.fn(),
-})) as unknown as typeof IntersectionObserver;
+// Mock Next.js router
+vi.mock('next/router', () => ({
+  useRouter: () => ({
+    route: '/',
+    pathname: '/',
+    query: {},
+    asPath: '/',
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    prefetch: vi.fn(),
+    beforePopState: vi.fn(),
+    events: {
+      on: vi.fn(),
+      off: vi.fn(),
+      emit: vi.fn(),
+    },
+  }),
+}));
+
+// Mock Next.js navigation
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  useSearchParams: () => new URLSearchParams(),
+  usePathname: () => '/',
+}));
+
+// Mock Next.js image
+vi.mock('next/image', () => ({
+  default: ({ src, alt, ...props }: any) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} {...props} />
+  ),
+}));
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn(() => ({
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
-  disconnect: vi.fn(),
   unobserve: vi.fn(),
-})) as unknown as typeof ResizeObserver;
+  disconnect: vi.fn(),
+}));
 
-// Mock window.matchMedia
+// Mock IntersectionObserver
+global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+  root: null,
+  rootMargin: '',
+  thresholds: [],
+}));
+
+// Mock matchMedia for responsive design testing
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation((query: string) => ({
+  value: vi.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -46,7 +80,43 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// Mock localStorage
+// Mock requestAnimationFrame for animation testing
+global.requestAnimationFrame = vi.fn((callback) => {
+  return setTimeout(callback, 16.67); // 60fps
+});
+
+global.cancelAnimationFrame = vi.fn((id) => {
+  clearTimeout(id);
+});
+
+// Mock performance API for Core Web Vitals testing
+Object.defineProperty(global, 'performance', {
+  writable: true,
+  value: {
+    ...performance,
+    getEntriesByType: vi.fn(),
+    mark: vi.fn(),
+    measure: vi.fn(),
+    now: vi.fn(() => Date.now()),
+    getEntriesByName: vi.fn(),
+    clearMarks: vi.fn(),
+    clearMeasures: vi.fn(),
+  },
+});
+
+// Mock CSS.supports for feature detection
+Object.defineProperty(CSS, 'supports', {
+  value: vi.fn((property: string, value?: string) => {
+    // Mock support for modern CSS features
+    if (property === 'backdrop-filter') return true;
+    if (property === 'transform-style' && value === 'preserve-3d') return true;
+    if (property === 'will-change') return true;
+    if (property === 'contain') return true;
+    return false;
+  }),
+});
+
+// Mock localStorage for theme persistence testing
 const localStorageMock = {
   getItem: vi.fn(),
   setItem: vi.fn(),
@@ -55,58 +125,44 @@ const localStorageMock = {
   length: 0,
   key: vi.fn(),
 };
+
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
-  writable: true,
 });
 
-// Mock sessionStorage
-const sessionStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-  length: 0,
-  key: vi.fn(),
+// Mock console methods to reduce noise in tests
+global.console = {
+  ...console,
+  warn: vi.fn(),
+  error: vi.fn(),
 };
-Object.defineProperty(window, 'sessionStorage', {
-  value: sessionStorageMock,
-  writable: true,
-});
 
-// Mock performance API
-Object.defineProperty(window, 'performance', {
+// Setup for motion preference testing
+Object.defineProperty(window, 'navigator', {
   value: {
-    now: vi.fn(() => Date.now()),
-    mark: vi.fn(),
-    measure: vi.fn(),
-    getEntriesByType: vi.fn(() => []),
-    getEntriesByName: vi.fn(() => []),
+    ...navigator,
+    hardwareConcurrency: 8,
+    deviceMemory: 8,
+    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
   },
-  writable: true,
 });
 
-// Mock requestAnimationFrame
-global.requestAnimationFrame = vi.fn((cb) => {
-  return setTimeout(cb, 16) as unknown as number;
+// Mock GeolocationAPI for weather integration
+Object.defineProperty(navigator, 'geolocation', {
+  value: {
+    getCurrentPosition: vi.fn(),
+    watchPosition: vi.fn(),
+    clearWatch: vi.fn(),
+  },
 });
 
-global.cancelAnimationFrame = vi.fn((id) => {
-  clearTimeout(id);
-});
+// Global test utilities
+export const waitForNextTick = () => new Promise(resolve => setTimeout(resolve, 0));
 
-beforeAll(() => {
-  // Setup global test environment
-});
+export const flushPromises = () => new Promise(resolve => setImmediate(resolve));
 
-afterEach(() => {
-  // Clear all mocks after each test
+// Setup cleanup
+beforeEach(() => {
   vi.clearAllMocks();
   localStorageMock.clear();
-  sessionStorageMock.clear();
-});
-
-afterAll(() => {
-  // Cleanup after all tests
-  vi.clearAllTimers();
 });

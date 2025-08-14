@@ -1,19 +1,69 @@
+/**
+ * Liquid Glass Constants and Configuration
+ * 
+ * Central configuration constants for the Liquid Glass Tech Blog project.
+ * Includes performance thresholds, seasonal themes, effect settings, and
+ * browser compatibility data.
+ * 
+ * @module Constants
+ * @author Liquid Glass Tech Blog Team
+ * @version 1.0.0
+ */
+
 import type { SeasonalThemeConfig, EffectParameters } from '@/types/liquid-glass';
 
-// Performance thresholds based on Core Web Vitals
+/**
+ * Performance Thresholds for Quality Assessment
+ * 
+ * Defines performance benchmarks based on Core Web Vitals and glass effect
+ * specific metrics. Used for automated quality assessment and performance
+ * optimization decisions.
+ * 
+ * @constant {Object} PERFORMANCE_THRESHOLDS
+ * @property {Object} CORE_WEB_VITALS - Standard web performance thresholds
+ * @property {Object} GLASS_EFFECTS - Glass effect specific performance limits
+ * @property {Object} DEVICE_LIMITS - Device capability thresholds
+ */
 export const PERFORMANCE_THRESHOLDS = {
-  LCP: 2500, // 2.5 seconds
-  INP: 200,  // 200 milliseconds
-  CLS: 0.1,  // 0.1
-  FCP: 1800, // 1.8 seconds
-  TTFB: 800, // 800 milliseconds
-  FPS: 60,   // 60 FPS for smooth animations
+  CORE_WEB_VITALS: {
+    LCP: {
+      GOOD: 2500,
+      NEEDS_IMPROVEMENT: 4000,
+    },
+    INP: {
+      GOOD: 200,
+      NEEDS_IMPROVEMENT: 500,
+    },
+    CLS: {
+      GOOD: 0.1,
+      NEEDS_IMPROVEMENT: 0.25,
+    },
+    FCP: {
+      GOOD: 1800,
+      NEEDS_IMPROVEMENT: 3000,
+    },
+    TTFB: {
+      GOOD: 800,
+      NEEDS_IMPROVEMENT: 1800,
+    },
+  },
+  GLASS_EFFECTS: {
+    MAX_RENDER_TIME: 16.67, // 60fps target
+    MIN_FRAME_RATE: 30,
+    MAX_GPU_USAGE: 50,
+    MAX_MEMORY_USAGE: 256,
+  },
+  DEVICE_LIMITS: {
+    LOW_END_MEMORY: 2048,
+    LOW_END_CORES: 2,
+    MOBILE_SCREEN_WIDTH: 768,
+  },
 } as const;
 
 // Seasonal theme configurations
-export const SEASONAL_THEMES: Record<string, SeasonalThemeConfig> = {
-  spring_day: {
-    id: 'spring_day',
+export const SEASONAL_THEMES = {
+  spring: {
+    id: 'spring',
     season: 'spring',
     timeOfDay: 'day',
     colors: {
@@ -42,8 +92,8 @@ export const SEASONAL_THEMES: Record<string, SeasonalThemeConfig> = {
       duration: 300,
     },
   },
-  summer_day: {
-    id: 'summer_day',
+  summer: {
+    id: 'summer',
     season: 'summer',
     timeOfDay: 'day',
     colors: {
@@ -72,8 +122,8 @@ export const SEASONAL_THEMES: Record<string, SeasonalThemeConfig> = {
       duration: 300,
     },
   },
-  autumn_day: {
-    id: 'autumn_day',
+  autumn: {
+    id: 'autumn',
     season: 'autumn',
     timeOfDay: 'day',
     colors: {
@@ -102,8 +152,8 @@ export const SEASONAL_THEMES: Record<string, SeasonalThemeConfig> = {
       duration: 300,
     },
   },
-  winter_day: {
-    id: 'winter_day',
+  winter: {
+    id: 'winter',
     season: 'winter',
     timeOfDay: 'day',
     colors: {
@@ -132,6 +182,47 @@ export const SEASONAL_THEMES: Record<string, SeasonalThemeConfig> = {
       duration: 300,
     },
   },
+} as const;
+
+// Effect settings
+export const EFFECT_SETTINGS = {
+  DEFAULT_BLUR: 15,
+  DEFAULT_OPACITY: 0.1,
+  DEFAULT_SATURATION: 1.8,
+  MIN_BLUR: 0,
+  MAX_BLUR: 50,
+  MIN_OPACITY: 0,
+  MAX_OPACITY: 1,
+  MIN_SATURATION: 0.5,
+  MAX_SATURATION: 3.0,
+} as const;
+
+// Default blur values for different variants
+export const DEFAULT_BLUR_VALUES = {
+  'glass-subtle': 10,
+  'glass-medium': 15,
+  'glass-intense': 25,
+  'glass-outlined': 8,
+  'glass-filled': 20,
+} as const;
+
+// Animation presets
+export const ANIMATION_PRESETS = {
+  subtle: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.3 }
+  },
+  smooth: {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.4, ease: "easeOut" }
+  },
+  spring: {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { type: "spring", damping: 20, stiffness: 300 }
+  }
 } as const;
 
 // Default effect parameters

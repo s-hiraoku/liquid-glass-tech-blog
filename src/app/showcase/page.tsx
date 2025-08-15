@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Effect Showcase Page
  * 

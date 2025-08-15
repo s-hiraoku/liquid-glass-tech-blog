@@ -1,10 +1,7 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
-import { setupLiquidGlassMocks } from './mocks';
-
-// Setup liquid glass and component mocks
-setupLiquidGlassMocks();
+// Simplified setup without complex mocks for now
 
 // Mock Next.js router
 vi.mock('next/router', () => ({
@@ -42,10 +39,8 @@ vi.mock('next/navigation', () => ({
 
 // Mock Next.js image
 vi.mock('next/image', () => ({
-  default: ({ src, alt, ...props }: any) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} {...props} />
-  ),
+  default: ({ src, alt, ...props }: any) => 
+    React.createElement('img', { src, alt, ...props }),
 }));
 
 // Mock ResizeObserver
@@ -155,6 +150,16 @@ Object.defineProperty(navigator, 'geolocation', {
     clearWatch: vi.fn(),
   },
 });
+
+// Mock MDX processor for testing
+vi.mock('@/lib/mdx/mdxProcessor', () => ({
+  getAllPosts: vi.fn(),
+  processMarkdownToMDX: vi.fn(),
+  parseFrontmatter: vi.fn(),
+  generateTableOfContents: vi.fn(),
+  applySyntaxHighlighting: vi.fn(),
+  extractMetadata: vi.fn(),
+}));
 
 // Global test utilities
 export const waitForNextTick = () => new Promise(resolve => setTimeout(resolve, 0));

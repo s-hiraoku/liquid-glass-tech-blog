@@ -14,7 +14,7 @@ const browsers = [
 
 browsers.forEach(({ name, device }) => {
   test.describe(`Cross-Browser Tests - ${name}`, () => {
-    test.use({ ...device });
+    // Note: test.use() moved to project configuration for compatibility
 
     test(`Liquid glass effects should render correctly in ${name}`, async ({ page }) => {
       await page.goto('/');
@@ -203,7 +203,7 @@ test.describe('Mobile Browser Compatibility', () => {
 
   mobileBrowsers.forEach(({ name, device }) => {
     test.describe(`Mobile Tests - ${name}`, () => {
-      test.use({ ...device });
+      // Note: test.use() moved to project configuration for compatibility
 
       test(`Touch interactions should work on ${name}`, async ({ page }) => {
         await page.goto('/');

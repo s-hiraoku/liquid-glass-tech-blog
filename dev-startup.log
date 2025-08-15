@@ -1,0 +1,616 @@
+
+> liquid-glass-tech-blog@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3001
+
+ ✓ Starting...
+   automatically enabled Fast Refresh for 1 custom loader
+ ✓ Ready in 1747ms
+ ○ Compiling / ...
+ ✓ Compiled / in 13.4s (1378 modules)
+ GET / 500 in 14078ms
+ ⨯ src/app/page.tsx (202:29) @ React
+ ⨯ useState only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+    at HomePage (./src/app/page.tsx:247:76)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "652441888"
+  200 | const HomePage: React.FC = () => {
+  201 |   // For testing compatibility, use React state
+> 202 |   const [posts, setPosts] = React.useState<BlogPost[]>([]);
+      |                             ^
+  203 |   const [error, setError] = React.useState<string | null>(null);
+  204 |   const [loading, setLoading] = React.useState(true);
+  205 |   
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ✓ Compiled in 2s (1403 modules)
+ GET / 200 in 531ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ GET / 200 in 145ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ○ Compiling /categories/[category] ...
+ ✓ Compiled /categories/[category] in 1462ms (1424 modules)
+ GET /categories/web-dev 200 in 3249ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2463379588"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2463379588"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button data-slot="button" className=... onClick={function onClick} children=...>
+                                                   ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "3559775653"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ○ Compiling /tags/[tag] ...
+ ✓ Compiled /tags/[tag] in 700ms (1428 modules)
+Error: Route "/tags/[tag]" used `params.tag`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at tag (src/app/tags/[tag]/page.tsx:240:25)
+  238 |
+  239 | const TagPage: React.FC<TagPageProps> = ({ params }) => {
+> 240 |   const tagSlug = params.tag;
+      |                         ^
+  241 |   const currentPage = 1; // In real implementation, get from searchParams
+  242 |   const enableInfiniteScroll = ENABLE_INFINITE_SCROLL;
+  243 |   
+Error: Route "/tags/[tag]" used `params.tag`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at tag (src/app/tags/[tag]/page.tsx:512:25)
+  510 | // Metadata generation for SEO
+  511 | export async function generateMetadata({ params }: TagPageProps) {
+> 512 |   const tagSlug = params.tag;
+      |                         ^
+  513 |   const tag = mockTags.find(t => t.slug === tagSlug);
+  514 |   
+  515 |   if (!tag) {
+ GET /tags/react 200 in 2088ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2463379588"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2463379588"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button data-slot="button" className=... onClick={function onClick} children=...>
+                                                   ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "3883359939"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ○ Compiling /posts ...
+ ✓ Compiled /posts in 583ms (1439 modules)
+ ⨯ src/app/posts/page.tsx (200:41) @ React
+ ⨯ useState only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+    at PostsListPage (./src/app/posts/page.tsx:298:88)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "1018152033"
+  198 |
+  199 | const PostsListPage: React.FC = () => {
+> 200 |   const [searchQuery, setSearchQuery] = React.useState('');
+      |                                         ^
+  201 |   const [selectedCategory, setSelectedCategory] = React.useState<string>('all');
+  202 |   const [sortBy, setSortBy] = React.useState<string>('latest');
+  203 |
+ GET /posts 500 in 724ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ✓ Compiled in 2.4s (1457 modules)
+ GET /posts 200 in 649ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ○ Compiling /showcase ...
+ ✓ Compiled /showcase in 993ms (1456 modules)
+ ⨯ src/app/showcase/page.tsx (160:41) @ React
+ ⨯ useState only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/react-client-hook-in-server-component
+    at ShowcasePage (./src/app/showcase/page.tsx:205:88)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "195710535"
+  158 |
+  159 | const ShowcasePage: React.FC = () => {
+> 160 |   const [searchQuery, setSearchQuery] = React.useState('');
+      |                                         ^
+  161 |   const [selectedCategory, setSelectedCategory] = React.useState<string>('all');
+  162 |   const [sortBy, setSortBy] = React.useState<string>('latest');
+  163 |
+ GET /showcase 500 in 1229ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ✓ Compiled in 1633ms (1407 modules)
+ GET /showcase 200 in 239ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ✓ Compiled / in 178ms (729 modules)
+TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.__webpack_require__ [as require] (/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js:33:43)
+    at require (webpack://next/dist/src/server/client-component-renderer-logger.ts:21:41)
+    at __next_require__ (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:111:37)
+    at requireModule (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1262:20)
+    at initializeModuleChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1468:10)
+    at getOutlinedModel (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1678:14)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2328:34)
+    at JSON.parse (<anonymous>)
+    at parse (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1238:25)
+    at initializeModelChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1465:10)
+    at getOutlinedModel (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1678:14)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2328:34)
+    at JSON.parse (<anonymous>)
+    at parse (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1238:25)
+    at initializeModelChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2293:10)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2268:27)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2476:37)
+  19 |       try {
+  20 |         clientComponentLoadCount += 1
+> 21 |         return ComponentMod.__next_app__.require(...args)
+     |                                         ^
+  22 |       } finally {
+  23 |         clientComponentLoadTimes += performance.now() - startTime
+  24 |       }
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.__webpack_require__ [as require] (/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js:33:43)
+    at JSON.parse (<anonymous>)
+    at JSON.parse (<anonymous>)
+digest: "2120574"
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.__webpack_require__ [as require] (/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js:33:43)
+    at require (webpack://next/dist/src/server/client-component-renderer-logger.ts:21:41)
+    at __next_require__ (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:111:37)
+    at requireModule (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1262:20)
+    at initializeModuleChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1468:10)
+    at getOutlinedModel (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1678:14)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2328:34)
+    at JSON.parse (<anonymous>)
+    at parse (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1238:25)
+    at initializeModelChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1465:10)
+    at getOutlinedModel (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1678:14)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2328:34)
+    at JSON.parse (<anonymous>)
+    at parse (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:1238:25)
+    at initializeModelChunk (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2293:10)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2268:27)
+    at response (webpack://next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.edge.development.js:2476:37)
+  19 |       try {
+  20 |         clientComponentLoadCount += 1
+> 21 |         return ComponentMod.__next_app__.require(...args)
+     |                                         ^
+  22 |       } finally {
+  23 |         clientComponentLoadTimes += performance.now() - startTime
+  24 |       } {
+  page: '/'
+}
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1954ms (1652 modules)
+ GET / 500 in 3178ms
+ GET / 200 in 269ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/motion-utils.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/motion-utils' in /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server for build dependencies doesn't lead to expected result '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/motion-utils.js', but to 'Error: Can't resolve './vendor-chunks/motion-utils' in '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/motion-utils (expected /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/motion-utils.js)
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/next-themes' in /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server for build dependencies doesn't lead to expected result '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/next-themes.js', but to 'Error: Can't resolve './vendor-chunks/next-themes' in '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/next-themes (expected /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/next-themes.js)
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/motion-dom' in /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server for build dependencies doesn't lead to expected result '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/motion-dom.js', but to 'Error: Can't resolve './vendor-chunks/motion-dom' in '/Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/motion-dom (expected /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/vendor-chunks/motion-dom.js)
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/webpack-runtime.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/.next/server/pages/_app.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Volumes/SSD/development/cc-deck/projects/liquid-glass-tech-blog/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ GET / 200 in 420ms
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."
+ ⨯ next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-server.edge.development.js (1723:17) @ Error
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <button onClick={function onClick} className=... children=...>
+                  ^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+digest: "2009262538"
+  1721 |           );
+  1722 |         if (/^on[A-Z]/.test(parentPropertyName))
+> 1723 |           throw Error(
+       |                 ^
+  1724 |             "Event handlers cannot be passed to Client Component props." +
+  1725 |               describeObjectForErrorMessage(parent, parentPropertyName) +
+  1726 |               "\nIf you need interactivity, consider converting part of this to a Client Component."

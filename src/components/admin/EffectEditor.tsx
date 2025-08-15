@@ -99,8 +99,8 @@ export function EffectEditor({
   }, [debouncedOnCodeChange])
 
   const handleTabChange = useCallback((value: string) => {
-    setActiveTab(value)
     if (value === 'typescript' || value === 'css' || value === 'javascript') {
+      setActiveTab(value as LanguageType)
       setLanguage(value as LanguageType)
     }
   }, [])
@@ -123,7 +123,7 @@ export function EffectEditor({
       blur={8}
       opacity={0.1}
       className="h-full w-full"
-      variant="medium"
+      variant="glass-medium"
     >
       <div className="h-full flex flex-col bg-gradient-to-br from-transparent to-white/5">
         <ResizablePanelGroup

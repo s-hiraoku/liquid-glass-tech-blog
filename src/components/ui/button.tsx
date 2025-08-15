@@ -53,7 +53,7 @@ function Button({
   // Apply liquid glass theme for glass variants
   const isGlassVariant = variant?.startsWith('glass-')
   const glassVariant = isGlassVariant 
-    ? (variant.replace('glass-', '') as 'subtle' | 'medium' | 'intense')
+    ? (variant?.replace('glass-', '') as 'subtle' | 'medium' | 'intense')
     : undefined
   
   const enhancedClassName = isGlassVariant

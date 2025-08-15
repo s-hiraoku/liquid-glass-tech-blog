@@ -232,10 +232,8 @@ export const DEFAULT_EFFECT_PARAMETERS: EffectParameters = {
   saturation: 1.8,
   brightness: 1.1,
   contrast: 1.0,
-  hueRotate: 0,
+  hue: 0,
   borderRadius: 16,
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  borderColor: 'rgba(255, 255, 255, 0.2)',
 };
 
 // Effect categories

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Posts List Page
  * 
@@ -76,8 +78,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategories[0],
-    tags: [mockTags[0], mockTags[2], mockTags[4]],
+    category: 'design',
+    tags: ['react', 'liquid-glass', 'css'],
     publishedAt: new Date('2024-01-15'),
     updatedAt: new Date('2024-01-15'),
     status: 'published',
@@ -111,8 +113,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategories[2],
-    tags: [mockTags[0], mockTags[2], mockTags[5]],
+    category: 'performance',
+    tags: ['react', 'liquid-glass', 'animation'],
     publishedAt: new Date('2024-01-12'),
     updatedAt: new Date('2024-01-12'),
     status: 'published',
@@ -146,8 +148,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategories[1],
-    tags: [mockTags[1], mockTags[2], mockTags[4]],
+    category: 'web-dev',
+    tags: ['typescript', 'liquid-glass', 'css'],
     publishedAt: new Date('2024-01-10'),
     updatedAt: new Date('2024-01-10'),
     status: 'published',
@@ -181,8 +183,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategories[3],
-    tags: [mockTags[0], mockTags[3], mockTags[2]],
+    category: 'tutorials',
+    tags: ['react', 'nextjs', 'liquid-glass'],
     publishedAt: new Date('2024-01-08'),
     updatedAt: new Date('2024-01-08'),
     status: 'published',
@@ -205,10 +207,10 @@ const PostsListPage: React.FC = () => {
   const filteredPosts = React.useMemo(() => {
     let filtered = mockPosts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           post.tags.some(tag => tag.name.toLowerCase().includes(searchQuery.toLowerCase()));
+                           (post.description?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+                           post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
       
-      const matchesCategory = selectedCategory === 'all' || post.category.id === selectedCategory;
+      const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
       
       return matchesSearch && matchesCategory;
     });
@@ -216,7 +218,7 @@ const PostsListPage: React.FC = () => {
     // Sort posts
     switch (sortBy) {
       case 'popular':
-        filtered.sort((a, b) => b.viewCount - a.viewCount);
+        filtered.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0));
         break;
       case 'reading-time':
         filtered.sort((a, b) => a.readingTime - b.readingTime);
@@ -231,7 +233,7 @@ const PostsListPage: React.FC = () => {
 
   // Calculate stats
   const totalPosts = mockPosts.length;
-  const totalViews = mockPosts.reduce((sum, post) => sum + post.viewCount, 0);
+  const totalViews = mockPosts.reduce((sum, post) => sum + (post.viewCount || 0), 0);
   const averageReadingTime = Math.round(mockPosts.reduce((sum, post) => sum + post.readingTime, 0) / mockPosts.length);
 
   return (

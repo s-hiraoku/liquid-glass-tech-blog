@@ -12,15 +12,13 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import type { Season, TimeOfDay } from '@/types/liquid-glass';
 
-// Import @developer-hub/liquid-glass (mocked in tests)
-import * as liquidGlassModule from '@developer-hub/liquid-glass';
-
-// Use the module, with fallback for development when the actual library isn't available
-const liquidGlass = liquidGlassModule || {
-  createParticleSystem: () => ({}),
-  renderParticles: () => {},
-  updateParticleSystem: () => {},
-  destroyParticleSystem: () => {},
+// Mock @developer-hub/liquid-glass for development
+// In production, this would import from the actual @developer-hub/liquid-glass package
+const liquidGlass = {
+  createParticleSystem: (config: any) => ({}),
+  renderParticles: (system: any, config: any) => {},
+  updateParticleSystem: (system: any, config: any) => {},
+  destroyParticleSystem: (system: any) => {},
   isGPUSupported: () => true,
   getPerformanceMetrics: () => ({
     fps: 60,
@@ -208,7 +206,7 @@ export const SeasonalParticles: React.FC<SeasonalParticlesProps> = ({
       maxParticles
     );
 
-    let config = {
+    let config: CustomParticleConfig = {
       ...baseConfig,
       count: effectiveCount,
       type: PARTICLE_TYPE_MAP[currentSeason]
@@ -324,7 +322,7 @@ export const SeasonalParticles: React.FC<SeasonalParticlesProps> = ({
         liquidGlass.renderParticles(particleSystemRef.current, animationConfig);
       }
     } catch (error) {
-      console.warn(`Failed to initialize particle system: ${error.message}`);
+      console.warn(`Failed to initialize particle system: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setHasError(true);
     }
   }, [disabled, currentSeason, particleCount, maxParticles, createParticleConfig]);

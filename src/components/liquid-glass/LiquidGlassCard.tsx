@@ -9,7 +9,7 @@ import type { LiquidGlassCardProps, LiquidGlassVariant } from '@/types/liquid-gl
 // Mock @developer-hub/liquid-glass library for development
 // In production, this would import from the actual @developer-hub/liquid-glass package
 const createLiquidGlass = () => ({
-  updateParams: () => {},
+  updateParams: (params: any) => {},
   destroy: () => {}
 });
 

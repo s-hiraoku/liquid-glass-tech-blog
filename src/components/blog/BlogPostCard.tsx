@@ -477,13 +477,13 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({
           <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
             <Link href={`/posts/${post.slug}`} data-testid="next-link">
               <Image
-                src={post.eyecatchImage.url || '/placeholder-image.jpg'}
-                alt={post.eyecatchImage.alt || post.title}
-                width={post.eyecatchImage.width}
-                height={post.eyecatchImage.height}
+                src={post.eyecatchImage?.url || '/placeholder-image.jpg'}
+                alt={post.eyecatchImage?.alt || post.title}
+                width={post.eyecatchImage?.width || 400}
+                height={post.eyecatchImage?.height || 200}
                 className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                 placeholder="blur"
-                blurDataURL={post.eyecatchImage.blurDataURL}
+                blurDataURL={post.eyecatchImage?.blurDataURL}
                 loading="lazy"
                 decoding="async"
                 data-testid="next-image"
@@ -494,11 +494,11 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({
             <Badge
               variant="secondary"
               className="absolute top-3 left-3 z-10 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
-              style={{ backgroundColor: post.category.color, color: 'white' }}
-              onClick={(e) => handleCategoryClick(e, post.category.slug)}
+              style={{ backgroundColor: '#3b82f6', color: 'white' }}
+              onClick={(e) => handleCategoryClick(e, post.category)}
               data-testid="category-badge"
             >
-              {post.category.name}
+              {post.category}
             </Badge>
           </div>
 
@@ -526,15 +526,15 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({
             {/* Tags */}
             {showTags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-4">
-                {post.tags.slice(0, 3).map((tag) => (
+                {post.tags.slice(0, 3).map((tag: string) => (
                   <Badge
-                    key={tag.id}
+                    key={tag}
                     variant="outline"
                     className="text-xs inline-flex items-center rounded-full cursor-pointer hover:bg-muted transition-colors"
-                    onClick={(e) => handleTagClick(e, tag.slug)}
-                    data-testid={`tag-badge-${tag.slug}`}
+                    onClick={(e) => handleTagClick(e, tag)}
+                    data-testid={`tag-badge-${tag}`}
                   >
-                    {tag.name}
+                    {tag}
                   </Badge>
                 ))}
                 {post.tags.length > 3 && (

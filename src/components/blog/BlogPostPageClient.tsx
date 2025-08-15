@@ -147,7 +147,7 @@ export default function BlogPostPageClient({ params }: BlogPostPageClientProps) 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Table of Contents (Desktop) */}
           <aside className="hidden lg:block lg:col-span-1 space-y-6">
-            <LiquidGlassCard variant="subtle" className="sticky top-24">
+            <LiquidGlassCard variant="glass-subtle" className="sticky top-24">
               <div className="p-4">
                 <h2 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-4">
                   Table of Contents
@@ -174,7 +174,7 @@ export default function BlogPostPageClient({ params }: BlogPostPageClientProps) 
           <div className="lg:col-span-3">
             <article role="article" className="space-y-8">
               {/* Post header */}
-              <LiquidGlassCard variant="medium" className="overflow-hidden">
+              <LiquidGlassCard variant="glass-medium" className="overflow-hidden">
                 <div className="relative h-64 md:h-80">
                   <Image
                     src={post.eyecatch || '/images/default-article.jpg'}
@@ -229,14 +229,17 @@ export default function BlogPostPageClient({ params }: BlogPostPageClientProps) 
               )}
 
               {/* MDX Content */}
-              <LiquidGlassCard variant="subtle" className="prose prose-lg max-w-none">
+              <LiquidGlassCard variant="glass-subtle" className="prose prose-lg max-w-none">
                 <div className="p-8" data-testid="mdx-content">
-                  <MDXRenderer content={post.content} />
+                  <div className="prose prose-lg max-w-none">
+                    {/* For now, render as plain text until MDXRenderer is properly configured */}
+                    <pre className="whitespace-pre-wrap">{post.content}</pre>
+                  </div>
                 </div>
               </LiquidGlassCard>
 
               {/* Social sharing */}
-              <LiquidGlassCard variant="subtle">
+              <LiquidGlassCard variant="glass-subtle">
                 <div className="p-6">
                   <h3 className="font-semibold mb-4 flex items-center">
                     <Share2 className="w-5 h-5 mr-2" />

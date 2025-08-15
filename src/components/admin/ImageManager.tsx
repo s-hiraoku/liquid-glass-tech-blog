@@ -267,7 +267,7 @@ export function ImageManager({
           <Label htmlFor="category-filter" className="sr-only">Filter by category</Label>
           <Select
             value={filter.category || 'all'}
-            onValueChange={(value) => setFilter(prev => ({ 
+            onValueChange={(value: string) => setFilter(prev => ({ 
               ...prev, 
               category: value === 'all' ? undefined : value 
             }))}
@@ -289,7 +289,7 @@ export function ImageManager({
           <Label htmlFor="usage-filter" className="sr-only">Filter by usage</Label>
           <Select
             value={filter.usage || 'all'}
-            onValueChange={(value) => setFilter(prev => ({ 
+            onValueChange={(value: string) => setFilter(prev => ({ 
               ...prev, 
               usage: value === 'all' ? undefined : value as 'used' | 'unused'
             }))}

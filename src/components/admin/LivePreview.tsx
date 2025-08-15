@@ -238,7 +238,7 @@ export function LivePreview({
             <Switch
               id="interactive-switch"
               checked={parameters.interactive}
-              onCheckedChange={(checked) => handleParameterChange('interactive', checked)}
+              onCheckedChange={(checked: boolean) => handleParameterChange('interactive', checked)}
               aria-label={`Interactive mode ${parameters.interactive ? 'enabled' : 'disabled'}`}
             />
             <label 

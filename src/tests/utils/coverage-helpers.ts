@@ -233,7 +233,7 @@ export async function findUncoveredFiles(srcDir: string = './src'): Promise<stri
 
     // Extract base names of tested files
     const testedFiles = new Set(
-      testFiles.map(testFile => {
+      testFiles.map((testFile: string) => {
         const baseName = testFile
           .replace(/\.(test|spec)\.(ts|tsx)$/, '')
           .replace(/\.test$/, '')
@@ -243,7 +243,7 @@ export async function findUncoveredFiles(srcDir: string = './src'): Promise<stri
     );
 
     // Find files without corresponding tests
-    const uncoveredFiles = sourceFiles.filter(sourceFile => {
+    const uncoveredFiles = sourceFiles.filter((sourceFile: string) => {
       const withoutExt = sourceFile.replace(/\.(ts|tsx)$/, '');
       const tsVersion = withoutExt + '.ts';
       const tsxVersion = withoutExt + '.tsx';

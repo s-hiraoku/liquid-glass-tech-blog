@@ -181,7 +181,7 @@ export async function measureGlassEffectPerformance(page: any) {
       const styles = getComputedStyle(card);
       
       // Extract performance-relevant properties
-      const backdropFilter = styles.backdropFilter || styles.webkitBackdropFilter;
+      const backdropFilter = styles.backdropFilter || (styles as any).webkitBackdropFilter;
       const transform = styles.transform;
       const willChange = styles.willChange;
       
@@ -215,7 +215,7 @@ export async function measureGlassEffectPerformance(page: any) {
  * Measure frame rate during animations
  */
 export async function measureFrameRate(page: any, duration: number = 1000): Promise<number> {
-  return await page.evaluate((duration) => {
+  return await page.evaluate((duration: number) => {
     return new Promise<number>((resolve) => {
       let frameCount = 0;
       const startTime = performance.now();

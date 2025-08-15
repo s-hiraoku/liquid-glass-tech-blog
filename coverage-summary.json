@@ -1,0 +1,4 @@
+
+> liquid-glass-tech-blog@1.0.0 test:coverage
+> vitest run --coverage --reporter=json-summary
+

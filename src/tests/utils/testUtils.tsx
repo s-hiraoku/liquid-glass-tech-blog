@@ -133,7 +133,7 @@ export const mockPerformanceAPI = () => {
     measure: vi.fn(),
     getEntriesByType: vi.fn((type: string) => {
       if (type === 'measure') {
-        return Object.values(mockEntries) as PerformanceEntry[];
+        return Object.values(mockEntries) as unknown as PerformanceEntry[];
       }
       return [];
     }),

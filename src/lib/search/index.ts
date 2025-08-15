@@ -14,6 +14,7 @@
 
 // Main search engine implementation
 export { SearchEngine } from './searchEngine';
+import { SearchEngine } from './searchEngine';
 
 // Type definitions
 export type {
@@ -26,6 +27,7 @@ export type {
 
 // Re-export content types for convenience
 export type { BlogPost } from '@/types/content';
+import type { BlogPost } from '@/types/content';
 
 /**
  * Factory function to create a search engine instance

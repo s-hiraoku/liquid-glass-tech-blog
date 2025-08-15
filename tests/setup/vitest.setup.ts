@@ -174,15 +174,19 @@ Object.defineProperty(CSS, 'supports', {
 });
 
 // Mock Intersection Observer for lazy loading tests
-global.IntersectionObserver = class MockIntersectionObserver {
-  constructor(callback: any) {
+global.IntersectionObserver = class MockIntersectionObserver implements IntersectionObserver {
+  constructor(callback: IntersectionObserverCallback) {
     this.callback = callback;
   }
-  callback: any;
+  callback: IntersectionObserverCallback;
+  root: Element | null = null;
+  rootMargin: string = '0px';
+  thresholds: ReadonlyArray<number> = [0];
   observe = vi.fn();
   unobserve = vi.fn();
   disconnect = vi.fn();
-};
+  takeRecords = vi.fn(() => []);
+} as any;
 
 // Mock ResizeObserver for responsive tests
 global.ResizeObserver = class MockResizeObserver {
@@ -211,7 +215,9 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock canvas for GPU-related tests
-HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
+HTMLCanvasElement.prototype.getContext = vi.fn(function(this: HTMLCanvasElement, contextId: string) {
+  if (contextId === '2d') {
+    return {
   fillRect: vi.fn(),
   clearRect: vi.fn(),
   getImageData: vi.fn(() => ({ data: new Uint8ClampedArray(4) })),
@@ -227,7 +233,10 @@ HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
   closePath: vi.fn(),
   stroke: vi.fn(),
   fill: vi.fn(),
-}));
+    } as any;
+  }
+  return null;
+}) as any;
 
 // Setup for each test
 beforeEach(() => {

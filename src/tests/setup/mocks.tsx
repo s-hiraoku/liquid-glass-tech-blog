@@ -4,17 +4,14 @@ import React from 'react';
 export const setupLiquidGlassMocks = () => {
   // Mock @developer-hub/liquid-glass
   vi.mock('@developer-hub/liquid-glass', () => ({
-    LiquidGlass: ({ children, className, variant, theme, ...props }: any) => (
-      <div 
-        className={`mock-liquid-glass ${className || ''}`} 
-        data-testid="liquid-glass"
-        data-variant={variant}
-        data-theme={theme}
-        {...props}
-      >
-        {children}
-      </div>
-    ),
+    LiquidGlass: ({ children, className, variant, theme, ...props }: any) => 
+      React.createElement('div', {
+        className: `mock-liquid-glass ${className || ''}`,
+        'data-testid': 'liquid-glass',
+        'data-variant': variant,
+        'data-theme': theme,
+        ...props
+      }, children),
     createLiquidGlassTheme: vi.fn((config) => ({
       name: config.name || 'mock-theme',
       ...config,
@@ -30,13 +27,13 @@ export const setupLiquidGlassMocks = () => {
   // Mock motion/framer-motion
   vi.mock('motion/react', () => ({
     motion: {
-      div: vi.fn(({ children, ...props }) => <div {...props}>{children}</div>),
-      button: vi.fn(({ children, ...props }) => <button {...props}>{children}</button>),
-      h1: vi.fn(({ children, ...props }) => <h1 {...props}>{children}</h1>),
-      h2: vi.fn(({ children, ...props }) => <h2 {...props}>{children}</h2>),
-      h3: vi.fn(({ children, ...props }) => <h3 {...props}>{children}</h3>),
-      span: vi.fn(({ children, ...props }) => <span {...props}>{children}</span>),
-      p: vi.fn(({ children, ...props }) => <p {...props}>{children}</p>),
+      div: vi.fn(({ children, ...props }) => React.createElement('div', props, children)),
+      button: vi.fn(({ children, ...props }) => React.createElement('button', props, children)),
+      h1: vi.fn(({ children, ...props }) => React.createElement('h1', props, children)),
+      h2: vi.fn(({ children, ...props }) => React.createElement('h2', props, children)),
+      h3: vi.fn(({ children, ...props }) => React.createElement('h3', props, children)),
+      span: vi.fn(({ children, ...props }) => React.createElement('span', props, children)),
+      p: vi.fn(({ children, ...props }) => React.createElement('p', props, children)),
     },
     AnimatePresence: vi.fn(({ children }) => children),
     useMotionValue: vi.fn(() => ({ get: vi.fn(), set: vi.fn() })),

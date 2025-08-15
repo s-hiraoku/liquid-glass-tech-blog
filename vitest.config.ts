@@ -4,7 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
   test: {
     environment: 'jsdom',
-    setupFiles: ['@testing-library/jest-dom/vitest'],
+    setupFiles: ['@testing-library/jest-dom/vitest', './src/tests/setup/vitest.setup.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov', 'json'],

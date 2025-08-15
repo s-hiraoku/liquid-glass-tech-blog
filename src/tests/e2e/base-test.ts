@@ -76,12 +76,12 @@ export class E2EBaseTest {
     await this.page.addInitScript((highPerformance) => {
       // Mock WebGL context for testing glass effects
       const originalGetContext = HTMLCanvasElement.prototype.getContext;
-      HTMLCanvasElement.prototype.getContext = function(type, attributes) {
+      (HTMLCanvasElement.prototype.getContext as any) = function(type: string, attributes: any) {
         if (type === 'webgl' || type === 'webgl2') {
           if (!highPerformance) {
             return null; // Simulate no WebGL support
           }
-          const context = originalGetContext.call(this, type, attributes);
+          const context = originalGetContext.call(this as HTMLCanvasElement, type, attributes);
           if (context) {
             // Mock high-performance GPU
             context.getParameter = function(pname) {

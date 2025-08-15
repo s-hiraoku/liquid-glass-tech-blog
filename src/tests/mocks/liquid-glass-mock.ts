@@ -18,6 +18,17 @@ export const mockLiquidGlassAPI = {
   GlassCard: MockGlassCard,
 };
 
+/**
+ * Mock IntersectionObserver for testing components that use it
+ */
+export const mockIntersectionObserver = () => {
+  global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  }));
+};
+
 // Mock the entire module
 vi.mock('@developer-hub/liquid-glass', () => mockLiquidGlassAPI);
 

@@ -107,7 +107,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-transparent to-purple-50 p-4">
       <div className="w-full max-w-md">
         <LiquidGlassCard
-          variant="medium"
+          variant="glass-medium"
           interactive
           className="overflow-hidden"
           blur={10}

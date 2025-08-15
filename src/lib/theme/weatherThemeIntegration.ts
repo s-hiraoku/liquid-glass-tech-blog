@@ -153,16 +153,16 @@ export async function fetchLocalWeatherTheme(): Promise<{
     
     // Convert to our internal format
     const weatherData: WeatherThemeData = {
-      condition: weather.condition,
+      condition: weather.weather,
       temperature: weather.temperature,
       humidity: weather.humidity,
       windSpeed: weather.windSpeed,
       visibility: weather.visibility || 10000,
-      pressure: weather.pressure || 1013
+      pressure: 1013 // Default pressure value as weather API doesn't provide this
     };
     
     // Get glass effect configuration
-    const glassEffect = getWeatherGlassEffect(weather.condition);
+    const glassEffect = getWeatherGlassEffect(weather.weather);
     
     // Get theme suggestion from API
     const themeSuggestion = await WeatherAPI.getThemeSuggestion(weather);

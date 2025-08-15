@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Homepage - Liquid Glass Tech Blog
  * 
@@ -15,6 +17,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, BookOpen, Zap } from 'lucide-react';
+import { getAllPosts } from '@/lib/mdx/mdxProcessor';
 
 // UI Components
 import { Button } from '@/components/ui/button';
@@ -74,8 +77,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategory,
-    tags: mockTags,
+    category: 'design',
+    tags: ['react', 'liquid-glass', 'css'],
     publishedAt: new Date('2024-01-15'),
     updatedAt: new Date('2024-01-15'),
     status: 'published',
@@ -109,8 +112,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategory,
-    tags: [mockTags[0], mockTags[2]],
+    category: 'performance',
+    tags: ['performance', 'optimization'],
     publishedAt: new Date('2024-01-12'),
     updatedAt: new Date('2024-01-12'),
     status: 'published',
@@ -144,8 +147,8 @@ const mockPosts: BlogPost[] = [
       }
     },
     author: mockAuthor,
-    category: mockCategory,
-    tags: [mockTags[1], mockTags[2]],
+    category: 'web-dev',
+    tags: ['typescript', 'animation'],
     publishedAt: new Date('2024-01-10'),
     updatedAt: new Date('2024-01-10'),
     status: 'published',
@@ -159,7 +162,69 @@ const mockPosts: BlogPost[] = [
   }
 ];
 
+// Simplified adapter function for working implementation
+const adaptMdxPostToBlogPost = (mdxPost: any): BlogPost => ({
+  id: mdxPost.slug,
+  slug: mdxPost.slug,
+  title: mdxPost.title,
+  description: mdxPost.excerpt,
+  content: mdxPost.content,
+  eyecatchImage: {
+    id: 'img1',
+    url: mdxPost.eyecatch || '/images/default-post.jpg',
+    webpUrl: mdxPost.eyecatch || '/images/default-post.webp',
+    alt: mdxPost.title,
+    width: 1200,
+    height: 630,
+    blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==',
+    generatedBy: 'ai',
+    optimizationMetrics: {
+      originalSize: 245760,
+      compressedSize: 89432,
+      compressionRatio: 0.364
+    }
+  },
+  author: mockAuthor,
+  category: 'tutorials',
+  tags: mdxPost.tags || [],
+  publishedAt: new Date(mdxPost.date || Date.now()),
+  updatedAt: new Date(mdxPost.date || Date.now()),
+  status: 'published' as const,
+  seoData: {
+    title: mdxPost.title,
+    description: mdxPost.excerpt,
+    keywords: mdxPost.tags || []
+  },
+  readingTime: mdxPost.readingTime || 5,
+  viewCount: 0
+});
+
 const HomePage: React.FC = () => {
+  // For testing compatibility, use React state
+  const [posts, setPosts] = React.useState<BlogPost[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  
+  React.useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const rawPosts = await getAllPosts();
+        const adaptedPosts = rawPosts.map(adaptMdxPostToBlogPost);
+        setPosts(adaptedPosts);
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        setError('Error loading posts. Please try again later.');
+        // Don't fallback to mock posts when there's an error
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadPosts();
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -222,23 +287,45 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           
+          {/* Error State */}
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-red-500 mb-4">{error}</p>
+              <Button 
+                onClick={() => window.location.reload()} 
+                variant="outline"
+              >
+                Try Again
+              </Button>
+            </div>
+          )}
+
+          {/* Loading State */}
+          {loading && !error && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading posts...</p>
+            </div>
+          )}
+
           {/* Posts Grid with Enhanced Performance Optimization */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockPosts.map((post, index) => (
-              <ArticleCard
-                key={post.id}
-                post={post}
-                variant="glass-medium"
-                interactive
-                seasonalTheme
-                showAuthor
-                showTags
-                showReadingTime
-                // Enhanced Phase 6: Device-adaptive performance configuration
-                className={index === 0 ? "priority-content" : ""} // LCP optimization for hero post
-              />
-            ))}
-          </div>
+          {!loading && !error && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {posts.map((post, index) => (
+                <ArticleCard
+                  key={post.id}
+                  post={post}
+                  variant="glass-medium"
+                  interactive
+                  seasonalTheme
+                  showAuthor
+                  showTags
+                  showReadingTime
+                  // Enhanced Phase 6: Device-adaptive performance configuration
+                  className={index === 0 ? "priority-content" : ""} // LCP optimization for hero post
+                />
+              ))}
+            </div>
+          )}
           
           {/* View All Posts */}
           <div className="text-center mt-12">

@@ -123,7 +123,7 @@ export const SeasonalThemeEngine: React.FC<SeasonalThemeEngineProps> = (props) =
     
     try {
       const weather = await WeatherAPI.getCurrentWeather();
-      setWeatherCondition(weather.condition);
+      setWeatherCondition(weather.weather as any);
       
       // Update season suggestion based on weather
       const themeSuggestion = await WeatherAPI.getThemeSuggestion(weather);

@@ -22,10 +22,10 @@ import { Badge } from '@/components/ui/badge';
 
 // Liquid Glass Components  
 import { LiquidGlassCard } from '@/components/liquid-glass/LiquidGlassCard';
-import { BlogPostCard } from '@/components/blog/BlogPostCard';
+import { ArticleCard } from '@/components/ui/article-card';
 
 // Types
-import type { BlogPost, Author, Category, Tag } from '@/types/liquid-glass';
+import type { BlogPost, Author, Category, Tag } from '@/types/content';
 
 // Mock data for demo - replace with real data fetching
 const mockAuthor: Author = {
@@ -222,21 +222,20 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           
-          {/* Posts Grid */}
+          {/* Posts Grid with Enhanced Performance Optimization */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockPosts.map((post) => (
-              <BlogPostCard
+            {mockPosts.map((post, index) => (
+              <ArticleCard
                 key={post.id}
                 post={post}
                 variant="glass-medium"
-                blur={15}
-                opacity={0.1}
                 interactive
                 seasonalTheme
-                motionPreset="smooth"
                 showAuthor
                 showTags
                 showReadingTime
+                // Enhanced Phase 6: Device-adaptive performance configuration
+                className={index === 0 ? "priority-content" : ""} // LCP optimization for hero post
               />
             ))}
           </div>

@@ -13,7 +13,7 @@ import { withAuth } from 'next-auth/middleware'
 import { NextRequest, NextResponse } from 'next/server'
 
 export default withAuth(
-  function middleware(request: NextRequest) {
+  function middleware(request: NextRequest & { nextauth: { token: any } }) {
     const { pathname } = request.nextUrl
     const token = request.nextauth.token
 

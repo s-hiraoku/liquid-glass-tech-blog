@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { Navigation } from "@/components/layout";
 import "./globals.css";
 
 // Fonts
@@ -87,9 +88,10 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">
+            <Navigation variant="glass-medium" />
+            <main className="flex-1">
               {children}
-            </div>
+            </main>
           </div>
         </ThemeProvider>
       </body>

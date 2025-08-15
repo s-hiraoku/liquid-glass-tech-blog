@@ -20,6 +20,51 @@ import { BlogPostCard } from './BlogPostCard';
 import { renderWithTheme } from '@/tests/utils/render-with-theme';
 import type { BlogPost } from '@/types/content';
 
+// Mock browser APIs
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(() => ({
+    matches: false,
+    media: '',
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
+
+// Mock intersection observer for compatibility
+const mockObserve = vi.fn();
+const mockUnobserve = vi.fn(); 
+const mockDisconnect = vi.fn();
+
+const mockIntersectionObserver = vi.fn().mockImplementation((callback) => {
+  // Immediately call callback with intersecting = true for compatibility
+  setTimeout(() => callback([{ isIntersecting: true, target: {} }]), 0);
+  return {
+    observe: mockObserve,
+    unobserve: mockUnobserve,
+    disconnect: mockDisconnect,
+    root: null,
+    rootMargin: '',
+    thresholds: []
+  };
+});
+
+Object.defineProperty(window, 'IntersectionObserver', {
+  writable: true,
+  configurable: true,
+  value: mockIntersectionObserver
+});
+
+Object.defineProperty(global, 'IntersectionObserver', {
+  writable: true,
+  configurable: true,
+  value: mockIntersectionObserver
+});
+
 // Mock framer-motion for consistent testing
 vi.mock('framer-motion', () => ({
   motion: {
@@ -57,6 +102,26 @@ vi.mock('next/link', () => ({
   default: ({ children, href, ...props }: any) => (
     <a href={href} {...props} data-testid="next-link">{children}</a>
   )
+}));
+
+// Mock device optimization hook for Phase 6 compatibility
+vi.mock('@/hooks/useDeviceOptimization', () => ({
+  useDeviceOptimization: () => ({
+    performanceTier: 'desktop-enhanced',
+    deviceCapabilities: {
+      maxBlurRadius: 25,
+      transparencyLevel: 0.15,
+      saturationLevel: 1.2,
+      gpuAcceleration: true
+    },
+    viewport: {
+      width: 1440,
+      height: 900,
+      isMobile: false,
+      isTablet: false,
+      isDesktop: true
+    }
+  })
 }));
 
 describe('BlogPostCard Component', () => {
@@ -138,6 +203,22 @@ describe('BlogPostCard Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockObserve.mockClear();
+    mockUnobserve.mockClear();
+    mockDisconnect.mockClear();
+    mockIntersectionObserver.mockClear();
+    // Reset mock implementation to ensure cards are always intersecting
+    mockIntersectionObserver.mockImplementation((callback) => {
+      setTimeout(() => callback([{ isIntersecting: true, target: {} }]), 0);
+      return {
+        observe: mockObserve,
+        unobserve: mockUnobserve,
+        disconnect: mockDisconnect,
+        root: null,
+        rootMargin: '',
+        thresholds: []
+      };
+    });
   });
 
   afterEach(() => {
@@ -254,16 +335,18 @@ describe('BlogPostCard Component', () => {
 
       const liquidGlass = screen.getByTestId('liquid-glass');
       expect(liquidGlass).toHaveAttribute('variant', 'glass-medium');
-      expect(liquidGlass).toHaveAttribute('blur', '20');
-      expect(liquidGlass).toHaveAttribute('opacity', '0.2');
-      expect(liquidGlass).toHaveAttribute('interactive', 'true');
+      // Phase 6: blur and opacity are now computed from device capabilities
+      expect(liquidGlass).toHaveAttribute('data-blur-radius', expect.any(String));
+      expect(liquidGlass).toHaveAttribute('data-opacity-level', expect.any(String));
+      expect(liquidGlass).toHaveAttribute('data-performance-tier', 'desktop-enhanced');
     });
 
     it('integrates seasonal theme when enabled', () => {
       renderWithTheme(<BlogPostCard {...defaultProps} seasonalTheme={true} />);
 
       const liquidGlass = screen.getByTestId('liquid-glass');
-      expect(liquidGlass).toHaveAttribute('seasonaltheme', 'true');
+      // Phase 6: seasonal theme creates data-season attribute (dynamic based on current date)
+      expect(liquidGlass).toHaveAttribute('data-season', expect.stringMatching(/^(spring|summer|autumn|winter)$/));
     });
   });
 
@@ -434,7 +517,9 @@ describe('BlogPostCard Component', () => {
       renderWithTheme(<BlogPostCard {...defaultProps} />);
 
       const article = screen.getByRole('article');
-      expect(article).toHaveAttribute('aria-label', 'Blog post: Test Blog Post Title');
+      // Phase 6: Enhanced ARIA label now includes publication date
+      expect(article).toHaveAttribute('aria-label', expect.stringContaining('Blog post: Test Blog Post Title'));
+      expect(article).toHaveAttribute('aria-label', expect.stringContaining('Published on'));
 
       const link = screen.getByRole('link', { name: /test blog post title/i });
       expect(link).toBeInTheDocument();

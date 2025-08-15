@@ -23,10 +23,10 @@ import { Badge } from '@/components/ui/badge';
 
 // Liquid Glass Components
 import { LiquidGlassCard } from '@/components/liquid-glass/LiquidGlassCard';
-import { BlogPostCard } from '@/components/blog/BlogPostCard';
+import { ArticleCard } from '@/components/ui/article-card';
 
 // Types
-import type { BlogPost, Author, Category, Tag } from '@/types/liquid-glass';
+import type { BlogPost, Author, Category, Tag } from '@/types/content';
 
 // Mock data - replace with real data fetching in production
 const mockAuthor: Author = {
@@ -387,8 +387,8 @@ const PostsListPage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post) => (
-                  <BlogPostCard
+                {filteredPosts.map((post, index) => (
+                  <ArticleCard
                     key={post.id}
                     post={post}
                     variant="glass-medium"
@@ -396,10 +396,11 @@ const PostsListPage: React.FC = () => {
                     opacity={0.1}
                     interactive
                     seasonalTheme
-                    motionPreset="smooth"
                     showAuthor
                     showTags
                     showReadingTime
+                    // Performance optimization: first 3 cards are priority content
+                    className={index < 3 ? "priority-content" : ""}
                   />
                 ))}
               </div>

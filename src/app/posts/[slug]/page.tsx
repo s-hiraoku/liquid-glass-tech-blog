@@ -25,10 +25,11 @@ import { LiquidGlassCard } from '@/components/liquid-glass/LiquidGlassCard'
 
 // Content and blog components
 import { MDXRenderer } from '@/components/content/MDXRenderer'
-import { BlogPostCard } from '@/components/blog/BlogPostCard'
+import { ArticleCard } from '@/components/ui/article-card'
 
 // MDX processing
-import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/mdx/mdxProcessor'
+import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/mdx'
+import type { BlogPost } from '@/types/content'
 
 interface BlogPostPageProps {
   params: { slug: string }
@@ -348,11 +349,75 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <section className="mt-16">
                 <h2 className="text-2xl font-bold mb-8">Related Posts</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {relatedPosts.map((relatedPost) => (
-                    <div key={relatedPost.slug} data-testid="related-post-card">
-                      <BlogPostCard post={relatedPost} />
-                    </div>
-                  ))}
+                  {relatedPosts.map((relatedPost) => {
+                    // Convert MDX post format to BlogPost format
+                    const convertedPost: BlogPost = {
+                      id: relatedPost.slug,
+                      slug: relatedPost.slug,
+                      title: relatedPost.title,
+                      description: relatedPost.excerpt,
+                      content: relatedPost.content,
+                      eyecatchImage: {
+                        id: `img-${relatedPost.slug}`,
+                        url: relatedPost.eyecatch || '/images/default-article.jpg',
+                        webpUrl: relatedPost.eyecatch?.replace('.jpg', '.webp') || '/images/default-article.webp',
+                        alt: relatedPost.title,
+                        width: 1200,
+                        height: 630,
+                        blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==',
+                        generatedBy: 'ai',
+                        optimizationMetrics: {
+                          originalSize: 245760,
+                          compressedSize: 89432,
+                          compressionRatio: 0.364
+                        }
+                      },
+                      author: {
+                        id: 'author-1',
+                        name: relatedPost.author || 'Liquid Glass Tech Blog',
+                        avatar: '/avatars/default-author.jpg',
+                        bio: 'Tech blog author'
+                      },
+                      category: {
+                        id: relatedPost.category || 'general',
+                        name: relatedPost.category?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'General',
+                        slug: relatedPost.category || 'general',
+                        description: `${relatedPost.category} articles`,
+                        color: '#3b82f6',
+                        postCount: 5
+                      },
+                      tags: relatedPost.tags.map(tag => ({
+                        id: tag,
+                        name: tag.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                        slug: tag,
+                        postCount: 3
+                      })),
+                      publishedAt: new Date(relatedPost.date),
+                      updatedAt: new Date(relatedPost.date),
+                      status: 'published',
+                      seoData: {
+                        title: relatedPost.metadata?.title || `${relatedPost.title} | Liquid Glass Tech Blog`,
+                        description: relatedPost.metadata?.description || relatedPost.excerpt,
+                        keywords: relatedPost.metadata?.keywords || relatedPost.tags
+                      },
+                      readingTime: relatedPost.readingTime || 5,
+                      viewCount: Math.floor(Math.random() * 1000) + 100
+                    };
+                    
+                    return (
+                      <div key={relatedPost.slug} data-testid="related-post-card">
+                        <ArticleCard 
+                          post={convertedPost}
+                          variant="glass-subtle"
+                          interactive
+                          seasonalTheme
+                          showAuthor
+                          showTags={false}
+                          showReadingTime
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}

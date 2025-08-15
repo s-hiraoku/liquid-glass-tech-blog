@@ -78,17 +78,9 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Bundle analyzer in development
+  // Simplified webpack config for development
   webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
-      // Enable bundle analysis in development
-      config.optimization = {
-        ...config.optimization,
-        usedExports: true,
-        sideEffects: false,
-      };
-    }
-    
+    // Minimal config to avoid optimization conflicts
     return config;
   },
 
